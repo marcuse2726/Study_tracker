@@ -1,44 +1,62 @@
-# CodeStat · 编程刷题数据统计
+# Study Tracker · 让学习看得见
 
-个人编程刷题数据仪表盘，汇总 LeetCode、Codeforces、AtCoder、洛谷、牛客的做题数据，并用可视化图表展示。响应式设计，支持桌面与手机。
+一个个人学习记录仪表盘：把**算法竞赛**、**英语背单词**、**日程规划**放在同一个星空背景的站点里，数据全部存在浏览器本地，开箱即用。
+
+- 纯前端 + 两个轻量后端代理（Codeforces / 词典），无需数据库、无需注册登录
+- 全站深色星空视觉，支持明暗主题切换
+- 手机 / 桌面响应式
 
 ## ✨ 功能
 
-- **总览仪表盘**：总刷题数、总提交数、连续打卡、各平台题数卡片
-- **可视化图表**：难度分布、标签分布、提交热力图（GitHub 贡献图同款）、Rating 曲线、排名变化、最近提交
-- **平台筛选**：导航栏 / 首页胶囊一键切换「全部 / 单平台」
-- **平台详情页**：每个平台独立统计
-- **设置页**：配置各平台用户名、手动导入数据、开关算法装饰、主题切换（亮 / 暗 / 跟随系统）
-- **关于页**：数据来源说明
-- **点击随机算法装饰**（重点交互）：点击页面任意位置弹出随机算法卡片（38 个算法），淡入上浮淡出，最多同时 5 个，不重复，`pointer-events:none` 不阻挡交互，可开关，默认开启，支持移动端
+### 主页 `/`
+装饰性落地页：星空背景 + 渐显标题 `Study Tracker` + 星芒点缀。
+
+### 算法竞赛 `/algorithm`
+- **每日计划**：月历上点大号「+」→ 填写任务名、起止日期、每天题量、算法范围 → 生成计划，任务以彩条显示在日历上
+- **扭蛋机**：按当天任务的题量抽取算法卡片，带摇把转动、胶囊掉落、开盖迸发的动画；同一天可重抽，附「重置」按钮
+- **Codeforces 数据**：Rating 曲线、难度分布、标签分布、提交热力图（GitHub 贡献图同款）、最近提交
+
+### 英语 `/english`
+- **单词本**：增删单词，支持标记「已掌握」
+- **每日复习**：按设定数量抽词，卡片左右滑动切换，点「点击翻译」展示**多个词典义项**与音标
+
+### 日程规划 `/schedule`
+- 月历视图，四类事项分块展示：**考试 / 活动 / 课程 / DDL**（各有配色）
+- 每个分类块内点「+」新建：填写标题 → 点选日期 → 日历上出现圆点标记
+
+### 全站
+- **点击随机算法装饰**：点击页面空白处弹出随机算法卡片（共 38 个算法），最多同时 5 个、不重复、自动淡出；**按钮、链接、输入框等可交互控件上不触发**
+- **动态宇宙星空**：Canvas 绘制的闪烁星辰、银河带、流星
+- **主题切换**：亮 / 暗一键切换
+- **设置页 `/settings`**：Codeforces 用户名、星空 / 算法装饰开关
+- **关于页 `/about`**：数据来源与合规声明
 
 ## 🧱 技术栈
 
-- 前端：Next.js 16（App Router）+ React 19 + TypeScript + Tailwind CSS v4 + shadcn/ui
-- 图表：ECharts 6（按需引入）
-- 数据请求：SWR；主题：next-themes；配置：localStorage
-- 后端：Next.js Route Handlers（数据源 Provider 可插拔架构）
+| 层 | 选型 |
+|---|---|
+| 框架 | Next.js 16.3.5（App Router / Turbopack） |
+| UI | React 19.2.8 + TypeScript（strict） |
+| 样式 | Tailwind CSS v4（CSS-first）+ shadcn/ui v4（Base UI） |
+| 图表 | ECharts 6（按需引入，tree-shaking） |
+| 数据请求 | SWR |
+| 状态 / 持久化 | React Context + `localStorage` |
+| 主题 | 自研轻量主题系统（不依赖 next-themes / 无内联 script） |
+| 后端 | Next.js Route Handlers（代理 + 进程内 TTL 缓存） |
 
 ## 🚀 快速开始
 
 要求 Node.js ≥ 20.9。
 
 ```bash
-cd coding-stats
-
-# 国内网络建议使用镜像（项目已内置 .npmrc 指向 npmmirror）
 npm install
-
-# 开发模式（默认 http://localhost:3000）
-npm run dev
-
-# 生产构建 + 启动
-npm run build
-npm run start
+npm run dev      # http://localhost:3000
+npm run build    # 生产构建
+npm run start    # 启动生产版本
 ```
 
-> 若 `npm install` 因网络超时失败，可临时执行：
-> `npm config set registry https://registry.npmmirror.com/`
+> 国内网络建议用镜像：项目已内置 `.npmrc` 指向 `registry.npmmirror.com`。
+> Windows 下也可直接双击 `启动网站.bat`（启动开发服务器并打开浏览器）。
 
 ## 📂 目录结构
 
@@ -46,78 +64,78 @@ npm run start
 coding-stats/
 ├── src/
 │   ├── app/
-│   │   ├── layout.tsx            # 根布局（导航 + 页脚 + 算法装饰挂载）
-│   │   ├── page.tsx              # 首页仪表盘
-│   │   ├── platform/[platform]/page.tsx   # 平台详情页
-│   │   ├── settings/page.tsx     # 设置页
-│   │   ├── about/page.tsx        # 关于页
+│   │   ├── layout.tsx              # 根布局：导航 + 页脚 + 星空 + 算法装饰
+│   │   ├── page.tsx                # 主页（装饰性落地页）
+│   │   ├── algorithm/page.tsx      # 算法竞赛
+│   │   ├── english/page.tsx        # 英语
+│   │   ├── schedule/page.tsx       # 日程规划
+│   │   ├── settings/page.tsx       # 设置
+│   │   ├── about/page.tsx          # 关于 / 声明
+│   │   ├── globals.css             # 主题变量、关键帧动画
 │   │   └── api/
-│   │       ├── stats/route.ts    # GET /api/stats 聚合统计
-│   │       ├── platforms/route.ts
-│   │       └── platforms/[platform]/route.ts
+│   │       ├── codeforces/route.ts # GET /api/codeforces?username=
+│   │       └── translate/route.ts  # GET /api/translate?word=
 │   ├── components/
-│   │   ├── ui/                   # shadcn/ui 基础组件
-│   │   ├── layout/               # 导航栏 / 主题切换 / 页脚
-│   │   ├── dashboard/            # 各图表组件
-│   │   ├── charts/echart.tsx     # ECharts 轻量封装
-│   │   ├── algo-decoration/      # 点击随机算法装饰
-│   │   └── shared/               # 卡片 / 加载 / 错误 / 空态
+│   │   ├── algorithm/              # 算法竞赛页（日历、任务弹窗、扭蛋机、CF 区块）
+│   │   ├── english/                # 单词本、复习会话
+│   │   ├── schedule/               # 日程日历 + 四类事项
+│   │   ├── dashboard/              # ECharts 图表（难度 / 标签 / 热力 / Rating / 最近提交）
+│   │   ├── algo-decoration/        # 点击随机算法装饰
+│   │   ├── starfield/              # Canvas 星空
+│   │   ├── layout/                 # 导航栏 / 主题切换 / 页脚
+│   │   ├── settings/               # 设置表单
+│   │   ├── ui/                     # shadcn/ui 基础组件
+│   │   └── shared/status.tsx       # 卡片 / 骨架屏 / 错误 / 空态
 │   ├── lib/
-│   │   ├── types.ts              # 全站共享类型
-│   │   ├── constants.ts          # 平台元信息 / 颜色
-│   │   ├── hooks.ts              # SWR 数据 hooks
-│   │   ├── chart-theme.ts        # 图表主题配色
-│   │   └── store/                # settings / filter 状态（localStorage）
-│   └── providers/
-│       ├── types.ts              # PlatformProvider 接口
-│       ├── mock.ts               # mock 数据生成器
-│       └── registry.ts           # 注册表 + 聚合逻辑
-├── .npmrc                        # 国内 npm 镜像
-└── README.md
+│   │   ├── store/                  # theme / settings / study / english / schedule
+│   │   ├── types.ts                # 共享类型
+│   │   ├── constants.ts            # 平台 / 难度 / 判定元信息
+│   │   ├── hooks.ts                # SWR hooks
+│   │   ├── chart-theme.ts          # 图表配色
+│   │   └── utils.ts
+│   └── providers/                  # 数据源（Codeforces + mock 兜底 + 缓存）
+├── DEPLOY.md                       # 部署到 Vercel 的步骤
+├── 启动网站.bat                     # Windows 一键启动脚本
+└── package.json
 ```
 
-## ⚙️ 配置用户名
+## 🔌 数据接口
 
-进入「设置」页，填写各平台用户名。配置保存在浏览器 `localStorage`，前端会通过查询参数传给后端 API。
+| 接口 | 说明 |
+|---|---|
+| `GET /api/codeforces?username=<handle>` | 代理 Codeforces 官方公开 API，聚合 Rating / 提交 / 难度 / 标签；带进程内 TTL 缓存与并发去重；上游失败时**自动降级为示例数据**（响应含 `isMock: true`） |
+| `GET /api/translate?word=<word>` | 单词翻译：有道词典 JSON（**多义项** + 音标）优先，MyMemory 兜底；24 小时进程内缓存 |
 
-> 配置用户名后，Codeforces、AtCoder 会拉取真实数据；LeetCode、洛谷、牛客可在「设置」页手动导入真实数据（否则显示示例数据）。界面会标注「真实数据 / 手动导入 / 示例数据」。
+> 用户名留空时直接返回示例数据，方便无账号预览。
 
-## 🔌 数据源与接入新平台
+## 💾 数据存储
 
-数据源统一抽象为 `PlatformProvider` 接口（`src/providers/types.ts`）：
+所有个人数据只存在浏览器 `localStorage`，**不会上传到服务器**，也不在 Git 仓库里：
 
-| 平台 | 接口 | 状态 |
-|---|---|---|
-| Codeforces | 官方 API | 真实数据 ✅ |
-| AtCoder | 官方 history.json + AtCoder Problems 非官方 API | 真实数据 ✅ |
-| LeetCode | 非官方 GraphQL（leetcode.cn） | 真实 + mock 兜底（受反爬影响） |
-| 洛谷 | 非官方 `_contentOnly` JSON | 真实 + mock 兜底（受反爬影响） |
-| 牛客 | 无公开 API | 仅示例数据 |
+| Key | 内容 |
+|---|---|
+| `studytracker.theme` | 主题（light / dark / system） |
+| `studytracker.settings.v1` | Codeforces 用户名、星空 / 算法装饰开关 |
+| `studytracker.study.v2` | 每日计划任务、扭蛋记录 |
+| `studytracker.english.v1` | 单词本、每日复习数量 |
+| `studytracker.schedule.v2` | 日程事项（按日期分组） |
 
-**接入新平台的步骤：**
+换浏览器 / 清缓存会丢失数据，需要自备备份习惯。
 
-1. 在 `src/lib/types.ts` 与 `src/lib/constants.ts` 中新增平台 ID / 元信息；
-2. 新建 `src/providers/<id>.ts`，实现 `PlatformProvider` 接口；
-3. 在 `src/providers/registry.ts` 中登记一行。
+## ⚙️ 配置
 
-前端与 API 路由无需改动，即可自动支持新平台。
+打开「设置」页填写 Codeforces 用户名即可拉取真实数据；不填则显示示例数据（界面会标注）。
 
 ## 📌 合规说明
 
+- 仅访问 **Codeforces 官方公开 API**，不绕过登录、验证码或反爬机制；
 - 所有跨域请求走后端代理，统一频率控制与缓存；
-- 仅访问公开数据，不绕过登录、验证码或封禁机制；
-- 数据获取失败自动降级为示例数据，并在界面标注「示例数据」。
+- 数据获取失败自动降级为示例数据并明确标注。
 
-## 🚀 部署到 Vercel
+## 🚀 部署
 
-详细步骤见 [DEPLOY.md](./DEPLOY.md)。摘要：
+详见 [DEPLOY.md](./DEPLOY.md)。当前**无需任何环境变量**即可运行；Vercel 零配置识别 Next.js。
 
-- 当前**无需任何环境变量**即可运行；
-- Vercel 零配置识别 Next.js，导入 Git 仓库或 `vercel --prod` 一键部署；
-- 生产环境建议把内存缓存换成 Upstash Redis（见 DEPLOY.md）。
+## 📄 License
 
-## 🗺️ Roadmap
-
-- [x] 第二步：前端 + mock 数据 + 点击随机算法装饰
-- [x] 第三步：接入真实数据源（Codeforces / AtCoder 真实；LeetCode / 洛谷带兜底）
-- [x] 第四步：Vercel 部署说明与完善
+见 [LICENSE](./LICENSE)。
