@@ -1,0 +1,395 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  /* 系统字体栈（含中文回退，避免依赖 Google Fonts 的联网下载） */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+
+  --background: oklch(0.985 0.002 260);
+  --foreground: oklch(0.18 0.01 265);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.541 0.281 293.009);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.96 0.005 260);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.96 0.005 260);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.95 0.02 285);
+  --accent-foreground: oklch(0.35 0.1 285);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.92 0.005 260);
+  --input: oklch(0.92 0.005 260);
+  --ring: oklch(0.541 0.281 293.009);
+  --chart-1: oklch(0.585 0.233 277.117);
+  --chart-2: oklch(0.72 0.14 195);
+  --chart-3: oklch(0.78 0.15 75);
+  --chart-4: oklch(0.64 0.2 25);
+  --chart-5: oklch(0.65 0.16 160);
+  --radius: 0.7rem;
+  --sidebar: oklch(0.985 0.002 260);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.541 0.281 293.009);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.95 0.02 285);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.92 0.005 260);
+  --sidebar-ring: oklch(0.541 0.281 293.009);
+}
+
+.dark {
+  --background: oklch(0.16 0.012 260);
+  --foreground: oklch(0.95 0.005 260);
+  --card: oklch(0.205 0.012 260);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0.012 260);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.702 0.183 293.541);
+  --primary-foreground: oklch(0.16 0.01 265);
+  --secondary: oklch(0.269 0.012 260);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0.012 260);
+  --muted-foreground: oklch(0.708 0.01 260);
+  --accent: oklch(0.3 0.04 285);
+  --accent-foreground: oklch(0.9 0.04 285);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.702 0.183 293.541);
+  --chart-1: oklch(0.65 0.21 285);
+  --chart-2: oklch(0.75 0.13 195);
+  --chart-3: oklch(0.8 0.14 75);
+  --chart-4: oklch(0.68 0.19 25);
+  --chart-5: oklch(0.68 0.15 160);
+  --sidebar: oklch(0.205 0.012 260);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.702 0.183 293.541);
+  --sidebar-primary-foreground: oklch(0.16 0.01 265);
+  --sidebar-accent: oklch(0.3 0.04 285);
+  --sidebar-accent-foreground: oklch(0.9 0.04 285);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.702 0.183 293.541);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+}
+
+/* ---------- 点击随机算法装饰：气泡动画 ---------- */
+/* 淡入 + 上浮 + 淡出，duration 由组件内联随机（1.5s ~ 2.5s） */
+@keyframes algo-float {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.82);
+  }
+  12% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(-22px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-38px) scale(0.94);
+  }
+}
+
+@keyframes algo-pop {
+  0% {
+    transform: scale(0.6);
+  }
+  60% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ---------- 扭蛋机动效 ---------- */
+@keyframes machine-shake {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  15% {
+    transform: rotate(-4deg);
+  }
+  30% {
+    transform: rotate(4deg);
+  }
+  45% {
+    transform: rotate(-3deg);
+  }
+  60% {
+    transform: rotate(3deg);
+  }
+  75% {
+    transform: rotate(-2deg);
+  }
+  90% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes crank-turn {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes capsule-drop {
+  0% {
+    transform: translateY(-44px);
+    opacity: 0;
+  }
+  35% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+  65% {
+    transform: translateY(0);
+  }
+  78% {
+    transform: translateY(-7px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes burst-ring {
+  0% {
+    transform: scale(0.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+@keyframes sparkle-twinkle {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  40% {
+    transform: scale(1.2) rotate(90deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.3) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+/* ---------- 购物车（选算法）动效 ---------- */
+@keyframes cart-item-in {
+  0% {
+    transform: translateY(-16px) scale(0.7);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(3px) scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes cart-item-out {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+}
+
+/* ---------- 大主页（Landing）动效 ---------- */
+@keyframes landing-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes text-shimmer {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.7) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15) rotate(20deg);
+  }
+}
+
+.landing-title {
+  background: linear-gradient(
+    100deg,
+    #c7d2fe,
+    #a78bfa,
+    #93c5fd,
+    #f0abfc,
+    #c7d2fe
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: text-shimmer 9s linear infinite;
+  filter: drop-shadow(0 0 30px rgba(167, 139, 250, 0.45));
+}
+
+.landing-sparkle {
+  position: absolute;
+  color: #e9d5ff;
+  pointer-events: none;
+  animation: twinkle 2.6s ease-in-out infinite;
+}
+
+/* ---------- 英语复习滑动动效 ---------- */
+@keyframes review-slide-out-left {
+  to {
+    transform: translateX(-130%);
+    opacity: 0;
+  }
+}
+@keyframes review-slide-out-right {
+  to {
+    transform: translateX(130%);
+    opacity: 0;
+  }
+}
+@keyframes review-slide-in-right {
+  from {
+    transform: translateX(130%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes review-slide-in-left {
+  from {
+    transform: translateX(-130%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.review-out-left {
+  animation: review-slide-out-left 0.22s ease-in forwards;
+}
+.review-out-right {
+  animation: review-slide-out-right 0.22s ease-in forwards;
+}
+.review-in-right {
+  animation: review-slide-in-right 0.26s ease-out;
+}
+.review-in-left {
+  animation: review-slide-in-left 0.26s ease-out;
+}
+
+/* 细滚动条，视觉更精致 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklch, var(--foreground) 25%, transparent)
+    transparent;
+}
