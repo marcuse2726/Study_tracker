@@ -28,11 +28,11 @@ const WALLPAPER_POSTER = "/wallpaper/poster.jpg";
 /**
  * 遮罩不透明度，0 ~ 1。
  *   0    → 完全不遮，壁纸最漂亮，但明亮区域上的文字看不清
- *   0.7  → 当前取值：兼顾观感与可读性
+ *   0.6  → 当前取值：比最初的 0.7 更亮一档
  *   1    → 全黑，等于看不见壁纸
- * 想调亮/调暗壁纸，只改这一个数字即可。
+ * 想调亮/调暗壁纸，只改这一个数字即可（越小越亮）。
  */
-const OVERLAY_OPACITY = 0.7;
+const OVERLAY_OPACITY = 0.6;
 
 export function BackgroundLayer() {
   // 视频加载失败时置为 true，于是整层换成星空背景
@@ -94,7 +94,7 @@ export function BackgroundLayer() {
         className="pointer-events-none fixed inset-0 z-0"
         style={{
           background:
-            "linear-gradient(to bottom, rgba(4,6,15,0.55) 0%, rgba(4,6,15,0) 22%, rgba(4,6,15,0) 70%, rgba(4,6,15,0.6) 100%)",
+            "linear-gradient(to bottom, rgba(4,6,15,0.45) 0%, rgba(4,6,15,0) 22%, rgba(4,6,15,0) 70%, rgba(4,6,15,0.5) 100%)",
         }}
         aria-hidden="true"
       />
