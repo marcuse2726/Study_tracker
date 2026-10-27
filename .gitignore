@@ -34,6 +34,10 @@ yarn-error.log*
 .env*
 !.env.example
 
+# 本地壁纸（Steam 创意工坊作品，仅个人本地使用，不提交到仓库）
+# 缺失时网页会自动回退到 Canvas 星空背景
+/public/wallpaper/
+
 # vercel
 .vercel
 

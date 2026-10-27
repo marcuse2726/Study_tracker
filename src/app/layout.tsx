@@ -59,7 +59,7 @@ import { Providers } from "@/components/providers";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { AlgoClickDecorator } from "@/components/algo-decoration/algo-click-decorator";
-import { Starfield } from "@/components/starfield/starfield";
+import { BackgroundLayer } from "@/components/background/background-layer";
 
 
 // ----------------------------------------------------------------------------
@@ -173,16 +173,18 @@ export default function RootLayout({
         ---------------------------------------------------------------- */}
         <Providers>
           {/* --------------------------------------------------------------
-            <Starfield /> —— Canvas 星空背景（星星闪烁 + 银河带 + 流星）。
+            <BackgroundLayer /> —— 全屏壁纸背景层（视频循环 + 深色遮罩）。
 
             三个要点：
               1. 末尾的 / 表示"自闭合"：这个组件没有子内容。
                  等价于 HTML 里 <img /> 那种写法。JSX 里所有没有子元素的
-                 标签都必须这样自闭合，不能只写 <Starfield>。
-              2. 它内部用 Canvas（一块画布）逐帧绘制，而不是几百个 div。
-              3. 内部定位是 fixed + 低层级，相当于垫在所有内容底下的画布。
+                 标签都必须这样自闭合，不能只写 <BackgroundLayer>。
+              2. 它内部渲染一个全屏 <video> 播放壁纸，再叠 2 层深色遮罩，
+                 保证白色文字在明亮区域也看得清。
+              3. 壁纸文件在 public/wallpaper/，已被 .gitignore 排除、不会上传；
+                 文件缺失或加载失败时，它会自动回退到 Canvas 星空背景。
           -------------------------------------------------------------- */}
-          <Starfield />
+          <BackgroundLayer />
 
           {/* --------------------------------------------------------------
             这一层 div 是"正经内容"的容器，类名各有职责：
