@@ -53,8 +53,8 @@ export const STAGES: { index: number; title: string; hint: string }[] = [
   { index: 1, title: "基础算法", hint: "几乎所有题都在用" },
   { index: 2, title: "线性数据结构", hint: "从数组长出来的分支" },
   { index: 3, title: "搜索", hint: "暴力也要有章法" },
-  { index: 4, title: "图论", hint: "最短路与生成树" },
-  { index: 5, title: "动态规划", hint: "竞赛最大的分水岭" },
+  { index: 4, title: "动态规划", hint: "竞赛最大的分水岭" },
+  { index: 5, title: "图论", hint: "最短路与生成树" },
   { index: 6, title: "数学", hint: "数论与组合" },
   { index: 7, title: "进阶结构", hint: "ICPC 才需要，蓝桥不考" },
 ];
@@ -90,6 +90,10 @@ export function csdnSearchUrl(keyword: string): string {
 
 // ---------------------------------------------------------------------------
 // 58 个知识点
+//
+// 注意：节点 id 里的 s0~s7 只是「历史编号」，不代表当前阶段。
+// 阶段顺序以每个节点的 stage 字段为准
+// （当前顺序：语言地基 → 基础算法 → 线性结构 → 搜索 → 动态规划 → 图论 → 数学 → 进阶）。
 // ---------------------------------------------------------------------------
 export const ALGORITHMS: AlgorithmNode[] = [
   // ===== 阶段 0：语言地基 =====
@@ -435,7 +439,7 @@ export const ALGORITHMS: AlgorithmNode[] = [
   {
     id: "s4-graph",
     name: "图的存储",
-    stage: 4,
+    stage: 5,
     tier: "core",
     desc: "邻接表/邻接矩阵，有向与无向、带权",
     prereq: ["s0-array"],
@@ -444,7 +448,7 @@ export const ALGORITHMS: AlgorithmNode[] = [
   {
     id: "s4-topo",
     name: "拓扑排序",
-    stage: 4,
+    stage: 5,
     tier: "core",
     desc: "有向无环图的线性化，常用于依赖关系题",
     prereq: ["s4-graph"],
@@ -453,7 +457,7 @@ export const ALGORITHMS: AlgorithmNode[] = [
   {
     id: "s4-dijkstra",
     name: "Dijkstra 最短路",
-    stage: 4,
+    stage: 5,
     tier: "core",
     desc: "堆优化后 O(m log n)，求非负边权单源最短路",
     prereq: ["s4-graph", "s2-heap"],
@@ -473,7 +477,7 @@ export const ALGORITHMS: AlgorithmNode[] = [
   {
     id: "s4-spfa",
     name: "Bellman-Ford / SPFA",
-    stage: 4,
+    stage: 5,
     tier: "adv",
     desc: "能处理负边权，也能判断负环",
     prereq: ["s4-graph"],
@@ -482,7 +486,7 @@ export const ALGORITHMS: AlgorithmNode[] = [
   {
     id: "s4-floyd",
     name: "Floyd 最短路",
-    stage: 4,
+    stage: 5,
     tier: "core",
     desc: "O(n³) 求任意两点最短路，n≤400 时非常好用",
     prereq: ["s4-graph"],
@@ -491,7 +495,7 @@ export const ALGORITHMS: AlgorithmNode[] = [
   {
     id: "s4-mst",
     name: "最小生成树",
-    stage: 4,
+    stage: 5,
     tier: "core",
     desc: "Kruskal（并查集）与 Prim，求连通最小代价",
     prereq: ["s2-dsu", "s4-graph"],
@@ -500,7 +504,7 @@ export const ALGORITHMS: AlgorithmNode[] = [
   {
     id: "s4-scc",
     name: "连通分量与缩点",
-    stage: 4,
+    stage: 5,
     tier: "opt",
     desc: "Tarjan 求强连通分量，缩点后转 DAG",
     prereq: ["s4-graph"],
@@ -510,7 +514,7 @@ export const ALGORITHMS: AlgorithmNode[] = [
   {
     id: "s4-lca",
     name: "树上基础与 LCA",
-    stage: 4,
+    stage: 5,
     tier: "adv",
     desc: "倍增求最近公共祖先、树上距离",
     prereq: ["s4-graph"],
@@ -521,7 +525,7 @@ export const ALGORITHMS: AlgorithmNode[] = [
   {
     id: "s5-linear",
     name: "线性 DP",
-    stage: 5,
+    stage: 4,
     tier: "core",
     desc: "状态定义 + 转移方程，最基础也最常考",
     prereq: ["s1-recur", "s3-memo"],
@@ -530,7 +534,7 @@ export const ALGORITHMS: AlgorithmNode[] = [
   {
     id: "s5-knapsack",
     name: "背包问题",
-    stage: 5,
+    stage: 4,
     tier: "core",
     desc: "01 / 完全 / 多重背包，蓝桥杯几乎年年考",
     prereq: ["s5-linear"],
@@ -553,7 +557,7 @@ export const ALGORITHMS: AlgorithmNode[] = [
   {
     id: "s5-interval",
     name: "区间 DP",
-    stage: 5,
+    stage: 4,
     tier: "adv",
     desc: "按区间长度递推，石子合并、括号匹配类问题",
     prereq: ["s5-linear"],
@@ -562,16 +566,16 @@ export const ALGORITHMS: AlgorithmNode[] = [
   {
     id: "s5-tree",
     name: "树形 DP",
-    stage: 5,
+    stage: 4,
     tier: "adv",
-    desc: "在树上做 DP，子树合并",
-    prereq: ["s5-linear", "s4-graph"],
+    desc: "在树上做 DP、子树合并（需要先会树的遍历，见图论阶段）",
+    prereq: ["s5-linear"],
     cfTags: ["dp", "trees"],
   },
   {
     id: "s5-bitmask",
     name: "状压 DP",
-    stage: 5,
+    stage: 4,
     tier: "opt",
     desc: "把集合压成二进制整数，n≤20 时使用",
     prereq: ["s5-linear"],
@@ -581,7 +585,7 @@ export const ALGORITHMS: AlgorithmNode[] = [
   {
     id: "s5-digit",
     name: "数位 DP",
-    stage: 5,
+    stage: 4,
     tier: "opt",
     desc: "统计区间内满足数位条件的数",
     prereq: ["s5-linear"],
@@ -591,7 +595,7 @@ export const ALGORITHMS: AlgorithmNode[] = [
   {
     id: "s5-opt",
     name: "DP 优化",
-    stage: 5,
+    stage: 4,
     tier: "adv",
     desc: "单调队列/前缀和优化，把 O(n²) 降到 O(n)",
     prereq: ["s5-knapsack", "s2-monoqueue"],

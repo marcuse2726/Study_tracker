@@ -85,18 +85,48 @@ export function AlgoClickDecorator() {
   }, []);
 
   useEffect(() => {
-    const handler = (e: PointerEvent) => {
+    // 按下时只记录起点，不立刻弹卡片。
+    // 如果改成"按下就弹"，那么拖动拓扑图、拖选文字时也会一路弹，非常干扰。
+    // 现在改成"松开时判断"：只有位移很小（真的是一次点击）才弹。
+    let down: { x: number; y: number; t: number; blocked: boolean } | null = null;
+
+    const onDown = (e: PointerEvent) => {
+      down = {
+        x: e.clientX,
+        y: e.clientY,
+        t: Date.now(),
+        // 起点在按钮/链接/输入框上 → 整次交互都不弹
+        blocked: isInteractive(e.target),
+      };
+    };
+
+    const onUp = (e: PointerEvent) => {
+      const d = down;
+      down = null;
       if (!enabledRef.current) return;
-      // 点击按钮 / 链接 / 输入框等交互控件时不弹出，只有点空白处才弹出
+      if (!d || d.blocked) return;
+      // 松开点落在交互控件上也不弹
       if (isInteractive(e.target)) return;
+      // 位移超过 6px → 判定为拖动（划动拓扑图、拖选文字），不弹
+      const dist = Math.hypot(e.clientX - d.x, e.clientY - d.y);
+      if (dist > 6) return;
+      // 长按超过 0.7 秒也不弹（避免和长按菜单冲突）
+      if (Date.now() - d.t > 700) return;
       spawn(e.clientX, e.clientY);
     };
-    window.addEventListener("pointerdown", handler, {
-      capture: true,
-      passive: true,
-    });
+
+    // pointercancel 时清掉记录（手指被系统手势打断等）
+    const onCancel = () => {
+      down = null;
+    };
+
+    window.addEventListener("pointerdown", onDown, { capture: true, passive: true });
+    window.addEventListener("pointerup", onUp, { capture: true, passive: true });
+    window.addEventListener("pointercancel", onCancel, { capture: true, passive: true });
     return () => {
-      window.removeEventListener("pointerdown", handler, { capture: true });
+      window.removeEventListener("pointerdown", onDown, { capture: true });
+      window.removeEventListener("pointerup", onUp, { capture: true });
+      window.removeEventListener("pointercancel", onCancel, { capture: true });
     };
   }, [spawn]);
 
