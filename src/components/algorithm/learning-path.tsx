@@ -148,6 +148,14 @@ export function LearningPath({
   const onPointerMove = useCallback((e: React.PointerEvent) => {
     const d = dragRef.current;
     if (!d) return;
+    // 关键：鼠标左键已经松开时，pointermove 依然会触发（只是"悬停"），
+    // 这时必须立刻结束拖动，否则整张图会跟着鼠标跑。
+    // e.buttons 是"当前按下的键的位掩码"，1 = 左键。
+    if ((e.buttons & 1) === 0) {
+      dragRef.current = null;
+      setDragging(false);
+      return;
+    }
     const dx = e.clientX - d.sx;
     const dy = e.clientY - d.sy;
     if (Math.abs(dx) > 4 || Math.abs(dy) > 4) d.moved = true;
@@ -195,7 +203,7 @@ export function LearningPath({
       <div
         ref={wrapRef}
         className={cn(
-          "relative h-[560px] w-full overflow-hidden rounded-xl border border-border/60 bg-card/30",
+          "relative h-[560px] w-full touch-none select-none overflow-hidden rounded-xl border border-border/60 bg-card/30",
           dragging ? "cursor-grabbing" : "cursor-grab",
         )}
         onPointerDown={onPointerDown}
@@ -309,7 +317,11 @@ export function LearningPath({
         </div>
 
         {/* 右下角控制条 */}
-        <div className="absolute bottom-3 right-3 flex items-center gap-1 rounded-lg border border-border/60 bg-background/80 p-1 backdrop-blur">
+        <div
+          className="absolute bottom-3 right-3 flex items-center gap-1 rounded-lg border border-border/60 bg-background/80 p-1 backdrop-blur"
+          // 阻止事件冒泡到画布，避免点缩放按钮时误触发拖动
+          onPointerDown={(e) => e.stopPropagation()}
+        >
           <button
             type="button"
             onClick={() => setView((v) => ({ ...v, scale: Math.max(0.35, v.scale - 0.12) }))}
