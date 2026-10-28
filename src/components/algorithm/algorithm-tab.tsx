@@ -69,7 +69,7 @@ export function AlgorithmTab() {
           <div className="min-w-0">
             <h2 className="text-base font-semibold tracking-tight">学习路径</h2>
             <p className="mt-0.5 text-xs text-muted-foreground">
-              从「数组」出发，一步步长到图论与 DP。点一个节点，下面给你随机出题。
+              从「数组」出发，一步步长到动态规划与图论。点一个节点，下面给你随机出题。
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
