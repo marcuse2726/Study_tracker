@@ -132,6 +132,7 @@ export function LearningPath({
 
   const onPointerDown = useCallback(
     (e: React.PointerEvent) => {
+      if (e.button !== 0) return; // 只处理鼠标左键
       dragRef.current = {
         sx: e.clientX,
         sy: e.clientY,
@@ -140,31 +141,47 @@ export function LearningPath({
         moved: false,
       };
       setDragging(true);
-      (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+      // ⚠️ 这里绝对不能调用 setPointerCapture。
+      // 一旦把指针捕获到画布元素上，浏览器会把 pointerup 重定向给画布，
+      // 随后派发的 click 也就落在画布上而不是节点按钮上，
+      // 结果就是「点节点完全没反应」。改用下面的 window 监听实现拖动。
     },
     [view.x, view.y],
   );
 
-  const onPointerMove = useCallback((e: React.PointerEvent) => {
-    const d = dragRef.current;
-    if (!d) return;
-    // 关键：鼠标左键已经松开时，pointermove 依然会触发（只是"悬停"），
-    // 这时必须立刻结束拖动，否则整张图会跟着鼠标跑。
-    // e.buttons 是"当前按下的键的位掩码"，1 = 左键。
-    if ((e.buttons & 1) === 0) {
-      dragRef.current = null;
-      setDragging(false);
-      return;
-    }
-    const dx = e.clientX - d.sx;
-    const dy = e.clientY - d.sy;
-    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) d.moved = true;
-    setView((v) => ({ ...v, x: d.ox + dx, y: d.oy + dy }));
-  }, []);
+  /**
+   * 拖动期间在 window 上监听 pointermove / pointerup。
+   * 用 window 而不是画布本身，是为了把鼠标拖出画布边界时依然能继续拖动，
+   * 同时不会像 pointer capture 那样吃掉节点上的 click。
+   */
+  useEffect(() => {
+    if (!dragging) return;
 
-  const onPointerUp = useCallback(() => {
-    setDragging(false);
-  }, []);
+    const onMove = (e: PointerEvent) => {
+      const d = dragRef.current;
+      if (!d) return;
+      // 左键已松开（只是悬停）→ 立刻结束拖动，避免整图跟鼠标跑
+      if ((e.buttons & 1) === 0) {
+        setDragging(false);
+        return;
+      }
+      const dx = e.clientX - d.sx;
+      const dy = e.clientY - d.sy;
+      if (Math.abs(dx) > 4 || Math.abs(dy) > 4) d.moved = true;
+      setView((v) => ({ ...v, x: d.ox + dx, y: d.oy + dy }));
+    };
+
+    const onUp = () => setDragging(false);
+
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onUp);
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
+    };
+  }, [dragging]);
 
   /** 节点位置索引，供画连线用 */
   const posById = useMemo(() => {
@@ -207,9 +224,6 @@ export function LearningPath({
           dragging ? "cursor-grabbing" : "cursor-grab",
         )}
         onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
-        onPointerCancel={onPointerUp}
       >
         <div
           className="absolute left-0 top-0 origin-top-left"
@@ -279,7 +293,11 @@ export function LearningPath({
                 key={node.id}
                 type="button"
                 onClick={() => {
-                  if (dragRef.current?.moved) return;
+                  // 读一次就清掉：只抑制「紧接在这次拖动之后」的那一次 click，
+                  // 不影响之后用键盘（Tab + Enter）触发的点击。
+                  const wasDrag = dragRef.current?.moved ?? false;
+                  if (dragRef.current) dragRef.current.moved = false;
+                  if (wasDrag) return;
                   onSelect(node.id);
                 }}
                 style={{ left: x, top: y, width: NODE_W, height: NODE_H }}
