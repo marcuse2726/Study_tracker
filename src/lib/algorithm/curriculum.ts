@@ -1,7 +1,7 @@
 // ============================================================================
 // curriculum.ts —— 算法学习路径（拓扑图）的数据源
 // ============================================================================
-// 这个文件是「算法竞赛」页的核心数据：58 个知识点、它们的前置依赖、
+// 这个文件是「算法竞赛」页的核心数据：56 个知识点、它们的前置依赖、
 // 以及每个知识点对应的 Codeforces 标签（用于随机抽题）。
 //
 // 三条设计原则：
@@ -89,7 +89,7 @@ export function csdnSearchUrl(keyword: string): string {
 }
 
 // ---------------------------------------------------------------------------
-// 58 个知识点
+// 56 个知识点
 //
 // 注意：节点 id 里的 s0~s7 只是「历史编号」，不代表当前阶段。
 // 阶段顺序以每个节点的 stage 字段为准
@@ -214,20 +214,11 @@ export const ALGORITHMS: AlgorithmNode[] = [
   },
   {
     id: "s1-binary",
-    name: "二分查找",
+    name: "二分",
     stage: 1,
     tier: "core",
-    desc: "lower_bound/upper_bound，以及手写二分的边界写法",
+    desc: "二分查找（lower_bound）与二分答案（求最值转判定），蓝桥杯高频考点",
     prereq: ["s1-sort"],
-    cfTags: ["binary search"],
-  },
-  {
-    id: "s1-binaryans",
-    name: "二分答案",
-    stage: 1,
-    tier: "core",
-    desc: "把「求最值」变成「判定可行性」，蓝桥杯高频考点",
-    prereq: ["s1-binary"],
     cfTags: ["binary search"],
     luogu: {
       入门: [
@@ -409,21 +400,12 @@ export const ALGORITHMS: AlgorithmNode[] = [
     cfTags: ["dfs and similar"],
   },
   {
-    id: "s3-backtrack",
-    name: "回溯",
-    stage: 3,
-    tier: "core",
-    desc: "选/不选、撤销操作，组合与排列的基础",
-    prereq: ["s3-dfs"],
-    cfTags: ["brute force"],
-  },
-  {
     id: "s3-prune",
     name: "剪枝",
     stage: 3,
     tier: "adv",
     desc: "可行性剪枝、最优性剪枝，把暴力救回来",
-    prereq: ["s3-backtrack"],
+    prereq: ["s3-dfs"],
   },
   {
     id: "s3-memo",

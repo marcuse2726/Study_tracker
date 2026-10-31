@@ -22,8 +22,8 @@ import { ALGORITHM_MAP, nodesForMode, type Mode } from "@/lib/algorithm/curricul
 import { cn } from "@/lib/utils";
 
 const MODE_OPTIONS: { value: Mode; label: string; hint: string }[] = [
-  { value: "lanqiao", label: "蓝桥杯 A 组", hint: "47 个节点 · 偏题海与模板" },
-  { value: "icpc", label: "ICPC / ACM", hint: "58 个节点 · 算法广度深度" },
+  { value: "lanqiao", label: "蓝桥杯 A 组", hint: "45 个节点 · 偏题海与模板" },
+  { value: "icpc", label: "ICPC / ACM", hint: "56 个节点 · 算法广度深度" },
 ];
 
 function ModeSwitch({ value, onChange }: { value: Mode; onChange: (m: Mode) => void }) {
