@@ -2917,5 +2917,56 @@
       { "id": "P3237", "name": "[HNOI2014] 米特运输" },
       { "id": "P3269", "name": "[JLOI2016] 字符串覆盖" }
     ]
+  },
+  "s7-kmp": {
+    "基础": [
+      { "id": "P5546", "name": "[POI 2000 R3] 公共串" },
+      { "id": "P8085", "name": "[COCI 2011/2012 #4] KRIPTOGRAM" },
+      { "id": "P9606", "name": "[CERC2019] ABB" },
+      { "id": "P10475", "name": "[USACO03FALL] Milking Grid（数据加强版）" },
+      { "id": "P10479", "name": "匹配统计" },
+      { "id": "P10915", "name": "[蓝桥杯 2024 国 B] 最长回文前后缀" },
+      { "id": "P1470", "name": "[IOI 1996 / USACO2.3] 最长前缀 Longest Prefix" },
+      { "id": "P3375", "name": "【模板】KMP" },
+      { "id": "P3449", "name": "[POI 2006] PAL-Palindromes" },
+      { "id": "P3618", "name": "误会" },
+      { "id": "P4391", "name": "[BalticOI 2009] Radio Transmission 无线传输" }
+    ],
+    "提高": [
+      { "id": "P5256", "name": "[JSOI2013] 编程作业" },
+      { "id": "P5287", "name": "[HNOI2019] JOJO" },
+      { "id": "P5770", "name": "[JSOI2016] 无界单词" },
+      { "id": "P5829", "name": "【模板】失配树" },
+      { "id": "P6080", "name": "[USACO05DEC] Cow Patterns G" },
+      { "id": "P6216", "name": "回文匹配" },
+      { "id": "P7582", "name": "「RdOI R2」风雨(rain)" },
+      { "id": "P8043", "name": "[COCI 2016/2017 #7] KLAVIR" },
+      { "id": "P8112", "name": "[Cnoi2021] 符文破译" },
+      { "id": "P8142", "name": "[ICPC 2020 WF] Which Planet is This?!" },
+      { "id": "P9149", "name": "串串题" },
+      { "id": "P9717", "name": "[EC Final 2022] Binary String" },
+      { "id": "P10581", "name": "[蓝桥杯 2024 国 A] 重复的串" },
+      { "id": "P10634", "name": "BZOJ2372 music" },
+      { "id": "P10716", "name": "【MX-X1-T4】「KDOI-05」简单的字符串问题" },
+      { "id": "P10796", "name": "「SpOI-R1」我看到了，谢谢你们" },
+      { "id": "P1393", "name": "Mivik 的标题" },
+      { "id": "P2353", "name": "背单词" },
+      { "id": "P2375", "name": "[NOI2014] 动物园" },
+      { "id": "P2463", "name": "[SDOI2008] Sandy 的卡片" },
+      { "id": "P3082", "name": "[USACO13MAR] Necklace G" },
+      { "id": "P3193", "name": "[HNOI2008] GT考试" },
+      { "id": "P3269", "name": "[JLOI2016] 字符串覆盖" },
+      { "id": "P3290", "name": "[SCOI2016] 围棋" },
+      { "id": "P3426", "name": "[POI 2005] SZA-Template" },
+      { "id": "P3435", "name": "[POI 2006] OKR-Periods of Words" },
+      { "id": "P3454", "name": "[POI 2007] OSI-Axes of Symmetry" },
+      { "id": "P3502", "name": "[POI 2010] CHO-Hamsters" },
+      { "id": "P3546", "name": "[POI 2012] PRE-Prefixuffix" },
+      { "id": "P3785", "name": "[SDOI2017] 文本校正" },
+      { "id": "P4156", "name": "[WC2016] 论战捆竹竿" },
+      { "id": "P4548", "name": "[CTSC2006] 歌唱王国" },
+      { "id": "P4696", "name": "[CEOI 2011] Matching" },
+      { "id": "P4824", "name": "[USACO15FEB] Censoring S" }
+    ]
   }
 }
