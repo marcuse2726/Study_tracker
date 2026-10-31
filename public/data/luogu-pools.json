@@ -1786,5 +1786,60 @@
       { "id": "P1232", "name": "[NOI2013] 树的计数" },
       { "id": "P1514", "name": "[NOIP 2010 提高组] 引水入城" }
     ]
+  },
+  "s5-linear": {
+    "入门": [
+      { "id": "P1091", "name": "[NOIP 2004 提高组] 合唱队形" },
+      { "id": "P1115", "name": "最大子段和" },
+      { "id": "B2175", "name": "最长公共子序列" },
+      { "id": "P3009", "name": "[USACO11JAN] Profits S" },
+      { "id": "B4296", "name": "[蓝桥杯青少年组国赛 2022] 最少问题" },
+      { "id": "P16760", "name": "[GKS 2020 #D] Alien Piano" }
+    ],
+    "基础": [
+      { "id": "P1018", "name": "[NOIP 2000 提高组] 乘积最大" },
+      { "id": "P1020", "name": "[NOIP 1999 提高组] 导弹拦截" },
+      { "id": "P1799", "name": "数列" },
+      { "id": "P2365", "name": "[IOI 2002] 任务安排" },
+      { "id": "P3902", "name": "递增" },
+      { "id": "B4163", "name": "[BCSP-X 2024 12 月初中组] 序列选择" },
+      { "id": "B4426", "name": "[CSP-X2025 山东] IOI 串" },
+      { "id": "B4533", "name": "[信息与未来 2026] 旅行计划" },
+      { "id": "P5095", "name": "[USACO12OPEN] Bookshelf S" },
+      { "id": "P5124", "name": "[USACO18DEC] Teamwork G" },
+      { "id": "P6323", "name": "[COCI 2006/2007 #4] ZBRKA" },
+      { "id": "P6390", "name": "[COCI 2007/2008 #4] POKLON" },
+      { "id": "P10957", "name": "环路运输" },
+      { "id": "P10976", "name": "统计重复个数" },
+      { "id": "P12302", "name": "[ICPC 2023 WF] 时差" },
+      { "id": "P12728", "name": "[KOI 2021 Round 2] 直升机着陆场" },
+      { "id": "P12833", "name": "[蓝桥杯 2025 国 B] 斐波那契字符串" },
+      { "id": "P13871", "name": "[蓝桥杯 2024 省 Java/Python A] 吊坠" },
+      { "id": "P14075", "name": "[GESP202509 六级] 划分字符串" },
+      { "id": "P14078", "name": "[GESP202509 七级] 金币收集" },
+      { "id": "P14746", "name": "下午茶时光" },
+      { "id": "P14924", "name": "[GESP202512 八级] 宝石项链" },
+      { "id": "P16114", "name": "[USTPC 2026] Blank or Mine" },
+      { "id": "P16530", "name": "[THUPC 2026 决赛] 积木消除游戏" },
+      { "id": "P16630", "name": "[GKS 2017 #F] Cake" }
+    ],
+    "提高": [
+      { "id": "P2115", "name": "[USACO14MAR] Sabotage G" },
+      { "id": "P4765", "name": "[CERC2014] The Imp" },
+      { "id": "P4954", "name": "[USACO09OPEN] Tower of Hay G" },
+      { "id": "P5301", "name": "[GXOI/GZOI2019] 宝牌一大堆" },
+      { "id": "P7240", "name": "[JSOI2014] 打兔子" },
+      { "id": "P10161", "name": "[DTCPC 2024] 小方的疑惑 10" },
+      { "id": "P10299", "name": "[CCC 2024 S5] Chocolate Bar Partition" },
+      { "id": "P10964", "name": "Fence Obstacle Course" },
+      { "id": "P10966", "name": "K-Anonymous Sequence" },
+      { "id": "P10972", "name": "I-Country" },
+      { "id": "P10977", "name": "Cut the Sequence" },
+      { "id": "P11335", "name": "[NOISG 2020 Finals] Arcade" },
+      { "id": "P12584", "name": "「KTSC 2019 R1」产油国" },
+      { "id": "P12917", "name": "[POI 2021/2022 R3] 小矮人派对 2 / Impreza krasnali 2" },
+      { "id": "P16313", "name": "[ICPC 2023 Jinan R] 向未来问你好" },
+      { "id": "P16397", "name": "[ECUSTPC 2026 Spring] 右灯左行" }
+    ]
   }
 }
