@@ -2575,5 +2575,54 @@
       { "id": "P3687", "name": "[ZJOI2017] 仙人掌" },
       { "id": "P3693", "name": "琪露诺的冰雪小屋" }
     ]
+  },
+  "s4-lca": {
+    "入门": [
+      { "id": "P3019", "name": "[USACO11MAR] Meeting Place S" }
+    ],
+    "基础": [
+      { "id": "P3258", "name": "[JLOI2014] 松鼠的新家" },
+      { "id": "P3379", "name": "【模板】最近公共祖先 (LCA)" },
+      { "id": "P3398", "name": "仓鼠找 sugar" },
+      { "id": "P3884", "name": "[JLOI2009] 二叉树问题" },
+      { "id": "P3938", "name": "斐波那契" },
+      { "id": "B4189", "name": "[中山市赛 2024] 树上开花" },
+      { "id": "P1396", "name": "营救" },
+      { "id": "P2912", "name": "[USACO08OCT] Pasture Walking G" },
+      { "id": "P2937", "name": "[USACO09JAN] Laserphones S" },
+      { "id": "P2971", "name": "[USACO10HOL] Cow Politics G" },
+      { "id": "P3128", "name": "[USACO15DEC] Max Flow P" }
+    ],
+    "提高": [
+      { "id": "P3248", "name": "[HNOI2016] 树" },
+      { "id": "P3250", "name": "[HNOI2016] 网络" },
+      { "id": "P3292", "name": "[SCOI2016] 幸运数字" },
+      { "id": "P3320", "name": "[SDOI2015] 寻宝游戏" },
+      { "id": "P3533", "name": "[POI 2012] RAN-Rendezvous" },
+      { "id": "P3603", "name": "雪辉" },
+      { "id": "P3833", "name": "[SHOI2012] 魔法树" },
+      { "id": "P3854", "name": "[TJOI2008] 通讯网破坏" },
+      { "id": "P3950", "name": "部落冲突" },
+      { "id": "P3979", "name": "遥远的国度" },
+      { "id": "P4069", "name": "[SDOI2016] 游戏" },
+      { "id": "P4074", "name": "[WC2013] 糖果公园" },
+      { "id": "P4172", "name": "[WC2006] 水管局长" },
+      { "id": "P4180", "name": "[BJWC2010] 严格次小生成树" },
+      { "id": "P1600", "name": "[NOIP 2016 提高组] 天天爱跑步" },
+      { "id": "P1852", "name": "[国家集训队] 跳跳棋" },
+      { "id": "P1967", "name": "[NOIP 2013 提高组] 货车运输" },
+      { "id": "P2245", "name": "星际导航" },
+      { "id": "P2416", "name": "泡芙" },
+      { "id": "P2495", "name": "【模板】虚树 / [SDOI2011] 消耗战" },
+      { "id": "P2542", "name": "[AHOI2005] 航线规划" },
+      { "id": "P2597", "name": "[ZJOI2012] 灾难" },
+      { "id": "P2633", "name": "Count on a tree" },
+      { "id": "P2680", "name": "[NOIP 2015 提高组] 运输计划" },
+      { "id": "P2783", "name": "有机化学之神偶尔会做作弊" },
+      { "id": "P2934", "name": "[USACO09JAN] Safe Travel G" },
+      { "id": "P3233", "name": "[HNOI2014] 世界树" },
+      { "id": "P3241", "name": "[HNOI2015] 开店" },
+      { "id": "P3242", "name": "[HNOI2015] 接水果" }
+    ]
   }
 }
