@@ -93,7 +93,7 @@ export function AlgorithmTab() {
 
       {/* ② 详情 + 随机题目 */}
       <section>
-        <AlgorithmDetail node={selected} mode={mode} onSelect={setSelectedId} />
+        <AlgorithmDetail node={selected} onSelect={setSelectedId} />
       </section>
 
       {/* ③ 每日计划 */}
