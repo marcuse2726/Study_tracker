@@ -2865,5 +2865,57 @@
       { "id": "P2300", "name": "合并神犇" },
       { "id": "P2305", "name": "[NOI2014] 购票" }
     ]
+  },
+  "s7-hashstr": {
+    "入门": [
+      { "id": "P1102", "name": "A-B 数对" },
+      { "id": "P1184", "name": "高手之在一起" },
+      { "id": "P1481", "name": "魔族密码" },
+      { "id": "P2957", "name": "[USACO09OCT] Barn Echoes G" }
+    ],
+    "基础": [
+      { "id": "P1225", "name": "[CEOI 1999] 黑白棋游戏" },
+      { "id": "P1333", "name": "瑞瑞的木棍" },
+      { "id": "P1379", "name": "八数码难题" },
+      { "id": "P1381", "name": "单词背诵" },
+      { "id": "P1470", "name": "[IOI 1996 / USACO2.3] 最长前缀 Longest Prefix" },
+      { "id": "P1688", "name": "新单词接龙问题" },
+      { "id": "P1872", "name": "回文串计数" },
+      { "id": "P1949", "name": "[NOI2001] 聪明的打字员" },
+      { "id": "P1955", "name": "[NOI2015] 程序自动分析" },
+      { "id": "P2312", "name": "[NOIP 2014 提高组] 解方程" },
+      { "id": "P2318", "name": "[HNOI2005] 虚拟内存" },
+      { "id": "P2363", "name": "马农" },
+      { "id": "P2578", "name": "[ZJOI2005] 九数码游戏" },
+      { "id": "P2580", "name": "于是他错误的点名开始了" },
+      { "id": "P2786", "name": "英语1（eng1）- 英语作文" },
+      { "id": "P2852", "name": "[USACO06DEC] Milk Patterns G" },
+      { "id": "P2870", "name": "[USACO07DEC] Best Cow Line G" },
+      { "id": "P3134", "name": "[USACO16JAN] Lights Out G" }
+    ],
+    "提高": [
+      { "id": "P2087", "name": "GTY的人类基因组计划2" },
+      { "id": "P2177", "name": "内存杀手" },
+      { "id": "P2282", "name": "[HNOI2003] 历史年份" },
+      { "id": "P2289", "name": "[HNOI2004] 邮递员" },
+      { "id": "P2353", "name": "背单词" },
+      { "id": "P2375", "name": "[NOI2014] 动物园" },
+      { "id": "P2463", "name": "[SDOI2008] Sandy 的卡片" },
+      { "id": "P2584", "name": "[ZJOI2006] GameZ 游戏排名系统" },
+      { "id": "P2593", "name": "[ZJOI2006] 超级麻将" },
+      { "id": "P2601", "name": "[ZJOI2009] 对称的正方形" },
+      { "id": "P2757", "name": "[国家集训队] 等差子序列" },
+      { "id": "P3082", "name": "[USACO13MAR] Necklace G" },
+      { "id": "P3105", "name": "[USACO14OPEN] Fair Photography S" },
+      { "id": "P3121", "name": "[USACO15FEB] Censoring G" },
+      { "id": "P3148", "name": "[USACO16OPEN] Bull in a China Shop P" },
+      { "id": "P3167", "name": "[CQOI2014] 通配符匹配" },
+      { "id": "P3170", "name": "[CQOI2015] 标识设计" },
+      { "id": "P3196", "name": "[HNOI2008] 神奇的国度" },
+      { "id": "P3230", "name": "[HNOI2013] 比赛" },
+      { "id": "P3234", "name": "[HNOI2014] 抄卡组" },
+      { "id": "P3237", "name": "[HNOI2014] 米特运输" },
+      { "id": "P3269", "name": "[JLOI2016] 字符串覆盖" }
+    ]
   }
 }

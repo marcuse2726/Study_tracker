@@ -645,10 +645,10 @@ export const ALGORITHMS: AlgorithmNode[] = [
   },
   {
     id: "s7-hashstr",
-    name: "字符串哈希",
+    name: "哈希",
     stage: 7,
     tier: "opt",
-    desc: "O(1) 判断两个子串是否相等",
+    desc: "字符串哈希 O(1) 判等，以及哈希思想在判重、集合、匹配中的各种应用",
     prereq: ["s0-string"],
     cfTags: ["hashing", "strings"],
     lanqiao: false,
