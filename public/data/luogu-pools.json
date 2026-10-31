@@ -2682,5 +2682,54 @@
       { "id": "P3726", "name": "[AHOI2017/HNOI2017] 抛硬币" },
       { "id": "B3903", "name": "[NICA #3] 星空 (Hard Version)" }
     ]
+  },
+  "s6-game": {
+    "入门": [
+      { "id": "P1288", "name": "取数游戏 II" }
+    ],
+    "基础": [
+      { "id": "P4018", "name": "Roy&October之取石子" },
+      { "id": "P4136", "name": "谁能赢呢？" },
+      { "id": "B4227", "name": "[常州市赛 2024] 游戏" },
+      { "id": "B4379", "name": "[蓝桥杯青少年组省赛 2025] 硬币游戏" },
+      { "id": "B4393", "name": "[常州市赛 2025] 排序" },
+      { "id": "B4470", "name": "[山西编程未来星 2025] 矩阵游戏 / matrix" },
+      { "id": "B4534", "name": "[信息与未来 2026] 桌面游戏" },
+      { "id": "P4576", "name": "[CQOI2013] 棋盘游戏" },
+      { "id": "P1199", "name": "[NOIP 2010 普及组] 三国游戏" },
+      { "id": "P1247", "name": "取火柴游戏" },
+      { "id": "P1290", "name": "欧几里德的游戏" },
+      { "id": "P1430", "name": "序列取数" },
+      { "id": "P1488", "name": "肥猫的游戏" },
+      { "id": "P1512", "name": "[ICPC 2001 Taejon R] 伊甸园日历游戏" },
+      { "id": "P1839", "name": "Play with Power" },
+      { "id": "P1857", "name": "质数取石子" },
+      { "id": "P2092", "name": "数字游戏" },
+      { "id": "P2197", "name": "【模板】Nim 游戏" },
+      { "id": "P2734", "name": "[IOI 1996 / USACO3.3] 游戏 A Game" },
+      { "id": "P2953", "name": "[USACO09OPEN] Cow Digit Game S" },
+      { "id": "P3150", "name": "pb的游戏 (1)" }
+    ],
+    "提高": [
+      { "id": "P3185", "name": "[HNOI2007] 分裂游戏" },
+      { "id": "P3210", "name": "[HNOI2010] 取石头游戏" },
+      { "id": "P3480", "name": "[POI 2009] KAM-Pebbles" },
+      { "id": "P3633", "name": "[APIO2011] 猜单词" },
+      { "id": "P3838", "name": "[IOI 2017] Toy Train" },
+      { "id": "P4055", "name": "[JSOI2009] 游戏" },
+      { "id": "P4096", "name": "[HEOI2013] Eden 的博弈树" },
+      { "id": "P4101", "name": "[HEOI2014] 人人尽说江南好" },
+      { "id": "P4279", "name": "[SHOI2008] 小约翰的游戏" },
+      { "id": "P4301", "name": "[CQOI2013] 新Nim游戏" },
+      { "id": "P2148", "name": "[SDOI2009] E&D" },
+      { "id": "P2252", "name": "【模板】威佐夫博弈 / [SHOI2002] 取石子游戏" },
+      { "id": "P2490", "name": "[SDOI2011] 黑白棋" },
+      { "id": "P2575", "name": "高手过招" },
+      { "id": "P2594", "name": "[ZJOI2009] 染色游戏" },
+      { "id": "P2599", "name": "[ZJOI2009] 取石子游戏" },
+      { "id": "P2964", "name": "[USACO09NOV] A Coin Game S" },
+      { "id": "P3024", "name": "[USACO11OPEN] Cow Checkers S" },
+      { "id": "P3179", "name": "[HAOI2015] 数组游戏" }
+    ]
   }
 }
