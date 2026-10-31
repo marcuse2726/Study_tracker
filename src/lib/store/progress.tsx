@@ -19,18 +19,29 @@ import {
 } from "react";
 import type { ReactNode } from "react";
 import type { Mode } from "@/lib/algorithm/curriculum";
+import type { Level, LuoguProblem } from "@/lib/algorithm/curriculum";
 
 /** 0 = 没开始，1 = 学过了，2 = 已掌握 */
 export type Mastery = 0 | 1 | 2;
+
+/** 用户自己维护的洛谷题池：nodeId → 难度档 → 题目列表 */
+export type LuoguPools = Record<string, Partial<Record<Level, LuoguProblem[]>>>;
 
 interface ProgressState {
   mode: Mode;
   mastery: Record<string, Mastery>;
   /** key 形如 "luogu:P1886" / "cf:2267D"，值为记录时间戳 */
   done: Record<string, number>;
+  /** 手填的洛谷题池，优先级高于 curriculum.ts 里的内置精选题 */
+  luoguPools: LuoguPools;
 }
 
-const DEFAULT_STATE: ProgressState = { mode: "lanqiao", mastery: {}, done: {} };
+const DEFAULT_STATE: ProgressState = {
+  mode: "lanqiao",
+  mastery: {},
+  done: {},
+  luoguPools: {},
+};
 const STORAGE_KEY = "studytracker.progress.v1";
 
 /** 已做过的题多久内不再随机推给你（30 天） */
@@ -43,6 +54,10 @@ interface ProgressContextValue extends ProgressState {
   toggleDone: (problemKey: string) => void;
   /** 这道题最近是否做过（冷却期内） */
   isRecentlyDone: (problemKey: string) => boolean;
+  /** 保存某个算法某个难度档的题池（传空数组 = 恢复内置精选） */
+  setLuoguPool: (nodeId: string, level: Level, items: LuoguProblem[]) => void;
+  /** 该算法所有自定义题池 */
+  luoguPools: LuoguPools;
 }
 
 const ProgressContext = createContext<ProgressContextValue | null>(null);
@@ -57,6 +72,7 @@ function loadState(): ProgressState {
       mode: parsed.mode === "icpc" ? "icpc" : "lanqiao",
       mastery: parsed.mastery ?? {},
       done: parsed.done ?? {},
+      luoguPools: parsed.luoguPools ?? {},
     };
   } catch {
     return DEFAULT_STATE;
@@ -114,6 +130,28 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     [state.done],
   );
 
+  const setLuoguPool = useCallback(
+    (nodeId: string, level: Level, items: LuoguProblem[]) => {
+      setState((prev) => {
+        const pools = { ...prev.luoguPools };
+        const nodePools = { ...(pools[nodeId] ?? {}) };
+
+        if (items.length === 0) {
+          // 空数组 = 删除这一档的自定义，回退到内置精选
+          delete nodePools[level];
+        } else {
+          nodePools[level] = items;
+        }
+
+        if (Object.keys(nodePools).length === 0) delete pools[nodeId];
+        else pools[nodeId] = nodePools;
+
+        return { ...prev, luoguPools: pools };
+      });
+    },
+    [],
+  );
+
   const value = useMemo<ProgressContextValue>(
     () => ({
       ...state,
@@ -121,8 +159,9 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       cycleMastery,
       toggleDone,
       isRecentlyDone,
+      setLuoguPool,
     }),
-    [state, setMode, cycleMastery, toggleDone, isRecentlyDone],
+    [state, setMode, cycleMastery, toggleDone, isRecentlyDone, setLuoguPool],
   );
 
   return (

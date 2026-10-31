@@ -14,7 +14,7 @@
 //   30 天内做过的题会被排除（除非池子里实在不够）。
 // ============================================================================
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import {
   ALGORITHM_MAP,
@@ -23,6 +23,7 @@ import {
   cfUrl,
   csdnSearchUrl,
   luoguUrl,
+  parseLuoguPool,
   type AlgorithmNode,
   type Level,
   type Mode,
@@ -106,9 +107,19 @@ export function AlgorithmDetail({
   mode: Mode;
   onSelect: (id: string) => void;
 }) {
-  const { mastery, cycleMastery, done, toggleDone, isRecentlyDone } = useProgress();
+  const {
+    mastery,
+    cycleMastery,
+    done,
+    toggleDone,
+    isRecentlyDone,
+    luoguPools,
+    setLuoguPool,
+  } = useProgress();
   const [seed, setSeed] = useState(0);
   const [snapshot, setSnapshot] = useState<CfSnapshot | null>(null);
+  const [editing, setEditing] = useState(false);
+  const poolRefs = useRef<Record<string, HTMLTextAreaElement | null>>({});
 
   useEffect(() => {
     let alive = true;
@@ -140,12 +151,14 @@ export function AlgorithmDetail({
     return LEVELS.map((level: Level) => {
       const [lo, hi] = range[level];
 
-      // 洛谷：从精选题里随机挑
-      const luoguPool: ProblemItem[] = (node.luogu?.[level] ?? []).map((p) => ({
+      // 洛谷：优先用用户自己填的题池，没有才回退到内置精选题
+      const custom = luoguPools[node.id]?.[level];
+      const luoguSource = custom && custom.length > 0 ? custom : (node.luogu?.[level] ?? []);
+      const luoguPool: ProblemItem[] = luoguSource.map((p) => ({
         key: `luogu:${p.id}`,
         label: p.id,
         url: luoguUrl(p.id),
-        meta: p.name,
+        meta: p.name || "洛谷题目",
       }));
 
       // Codeforces：按标签 + rating 区间筛，再随机抽
@@ -188,7 +201,7 @@ export function AlgorithmDetail({
         cfTotal: cfPool.length,
       };
     });
-  }, [node, mode, seed, snapshot, tagIds, isRecentlyDone]);
+  }, [node, mode, seed, snapshot, tagIds, isRecentlyDone, luoguPools]);
 
   if (!node) {
     return (
@@ -201,9 +214,45 @@ export function AlgorithmDetail({
   }
 
   const lv = mastery[node.id] ?? 0;
-  const hasLuogu = LEVELS.some((l) => (node.luogu?.[l]?.length ?? 0) > 0);
+  const hasLuogu = LEVELS.some(
+    (l) =>
+      (luoguPools[node.id]?.[l]?.length ?? 0) > 0 ||
+      (node.luogu?.[l]?.length ?? 0) > 0,
+  );
   const hasCf = tagIds.length > 0;
   const nothingYet = !hasLuogu && !hasCf;
+
+  /** 输入框的初始文本：有自定义就用自定义，否则用内置精选 */
+  const initialPoolText = (level: Level) => {
+    const custom = luoguPools[node.id]?.[level];
+    const src = custom && custom.length > 0 ? custom : (node.luogu?.[level] ?? []);
+    return src.map((p) => (p.name ? `${p.id} ${p.name}` : p.id)).join("\n");
+  };
+
+  /** 把三个输入框里的内容解析并写进题池 */
+  const savePools = () => {
+    for (const level of LEVELS) {
+      const text = poolRefs.current[level]?.value ?? "";
+      setLuoguPool(node.id, level, parseLuoguPool(text));
+    }
+    setSeed((s) => s + 1);
+  };
+
+  /** 导出为 JSON 方便备份 / 交给别人 */
+  const exportPools = async () => {
+    const data: Record<string, unknown> = {};
+    for (const level of LEVELS) {
+      const items = parseLuoguPool(poolRefs.current[level]?.value ?? "");
+      if (items.length > 0) data[level] = items;
+    }
+    const text = JSON.stringify({ [node.id]: data }, null, 2);
+    try {
+      await navigator.clipboard.writeText(text);
+      window.alert("已复制到剪贴板，可粘贴保存为 JSON 备份。");
+    } catch {
+      window.prompt("复制下面的 JSON：", text);
+    }
+  };
 
   return (
     <div className="space-y-4 rounded-xl border border-border/60 bg-card/40 p-4 sm:p-5">
@@ -267,6 +316,83 @@ export function AlgorithmDetail({
           ))}
         </div>
       )}
+
+      {/* 题池编辑器：手工维护洛谷题号 */}
+      <div className="rounded-lg border border-border/60 bg-background/40">
+        <button
+          type="button"
+          onClick={() => setEditing((v) => !v)}
+          className="flex w-full items-center justify-between px-3 py-2 text-left text-xs hover:bg-accent/40"
+        >
+          <span>
+            编辑洛谷题池
+            <span className="ml-2 text-[10px] text-muted-foreground">
+              （手填题号，保存后参与随机）
+            </span>
+          </span>
+          <span className="text-muted-foreground">{editing ? "收起" : "展开"}</span>
+        </button>
+
+        {editing && (
+          <div key={node.id} className="space-y-2.5 border-t border-border/60 p-3">
+            <p className="text-[11px] leading-relaxed text-muted-foreground">
+              每行一个题号，支持纯题号 <code className="text-foreground">P1115</code>、
+              题号加标题 <code className="text-foreground">P1115 最大子段和</code>、
+              或整条洛谷链接。空格和逗号分隔也能识别。
+              网址会自动拼成 <code className="text-foreground">luogu.com.cn/problem/题号</code>。
+            </p>
+
+            {LEVELS.map((level) => (
+              <div key={level}>
+                <div className="mb-1 flex items-center justify-between">
+                  <span className="text-[11px] font-medium">{level}</span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const el = poolRefs.current[level];
+                      if (el) el.value = "";
+                      setLuoguPool(node.id, level, []);
+                    }}
+                    className="text-[10px] text-muted-foreground hover:text-foreground"
+                  >
+                    清空这一档
+                  </button>
+                </div>
+                <textarea
+                  ref={(el) => {
+                    poolRefs.current[level] = el;
+                  }}
+                  defaultValue={initialPoolText(level)}
+                  rows={3}
+                  spellCheck={false}
+                  placeholder={"P1115 最大子段和\nP2004 领地选择"}
+                  className="w-full resize-y rounded border border-border/60 bg-card/60 p-2 font-mono text-[11px] leading-relaxed outline-none focus:border-violet-400/60"
+                />
+              </div>
+            ))}
+
+            <div className="flex flex-wrap items-center gap-2">
+              <button
+                type="button"
+                onClick={savePools}
+                className="rounded-md border border-violet-400/60 bg-violet-500/20 px-3 py-1.5 text-[11px] text-violet-100 hover:brightness-125"
+              >
+                保存题池
+              </button>
+              <button
+                type="button"
+                onClick={exportPools}
+                className="rounded-md border border-border/60 px-3 py-1.5 text-[11px] text-muted-foreground hover:bg-accent hover:text-foreground"
+              >
+                复制 JSON 备份
+              </button>
+              <span className="text-[10px] text-muted-foreground">
+                数据只存在你的浏览器（localStorage），不会上传
+              </span>
+            </div>
+          </div>
+        )}
+      </div>
 
       {/* 尚未整理题目的提示 */}
       {nothingYet && (

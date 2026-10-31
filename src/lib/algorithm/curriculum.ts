@@ -737,3 +737,63 @@ export function visiblePrereq(node: AlgorithmNode, mode: Mode): string[] {
   const visible = new Set(nodesForMode(mode).map((n) => n.id));
   return node.prereq.filter((p) => visible.has(p));
 }
+
+/**
+ * 解析用户手填的洛谷题号。
+ *
+ * 支持这些写法（可以混着用，换行 / 空格 / 逗号分隔都行）：
+ *   P1115
+ *   P1115 最大子段和
+ *   P1115,P2004,P1719
+ *   https://www.luogu.com.cn/problem/P1886
+ *   P1886 滑动窗口  P1440 求 m 区间最小值
+ *
+ * 规则：
+ *   - 「题号」= 1~4 个字母 + 1~7 位数字（P / B / T / U / CF / AT / SP 都能认）
+ *   - 题号后面紧跟的文字（直到下一个题号为止）会被当作题目名
+ */
+export function parseLuoguPool(text: string): LuoguProblem[] {
+  // 洛谷题号形态很杂：P1115 / B2001 / T123456 / U99999 / SP1234 /
+  // CF1234A / AT_abc123_a …… 统一规则：字母开头、只含字母数字下划线、且必须带数字。
+  const ID_RE = /^(?=.*\d)[A-Za-z][A-Za-z0-9_]{0,15}$/;
+  const URL_RE = /luogu\.com\.cn\/problem\/([A-Za-z][A-Za-z0-9_]{0,15})/i;
+
+  const tokens = text
+    .split(/[\s,，;；、]+/)
+    .map((t) => t.trim())
+    .filter(Boolean);
+
+  const result: LuoguProblem[] = [];
+  const seen = new Set<string>();
+  let pending: LuoguProblem | null = null;
+
+  const flush = () => {
+    if (pending && !seen.has(pending.id)) {
+      seen.add(pending.id);
+      result.push(pending);
+    }
+    pending = null;
+  };
+
+  for (const token of tokens) {
+    let id: string | null = null;
+    if (ID_RE.test(token)) {
+      id = token;
+    } else {
+      const m = token.match(URL_RE);
+      if (m) id = m[1];
+    }
+
+    if (id) {
+      flush();
+      // 题号大小写要小心：P1115 / CF1234A 是大写，但 AT_abc123_a 是全小写，
+      // 大写化会造成死链。含下划线的（AT_xxx）保持原样，其余转大写。
+      pending = { id: id.includes("_") ? id : id.toUpperCase(), name: "" };
+    } else if (pending) {
+      pending.name = pending.name ? `${pending.name} ${token}` : token;
+    }
+  }
+  flush();
+
+  return result;
+}
