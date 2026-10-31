@@ -57,6 +57,34 @@ function loadCf(): Promise<CfSnapshot> {
 }
 
 // ---------------------------------------------------------------------------
+// 内置洛谷题库（public/data/luogu-pools.json）
+// ---------------------------------------------------------------------------
+// 结构：{ "节点id": { "入门": [{id,name}], "基础": [...], "提高": [...] } }
+// 这个文件是仓库里的默认题库，所有访客都会加载；
+// localStorage 里用户自己填的题池优先级更高，会覆盖这里的同名档位。
+export type LuoguPoolMap = Record<
+  string,
+  Partial<Record<Level, { id: string; name: string }[]>>
+>;
+
+let poolsCache: LuoguPoolMap | null = null;
+let poolsLoading: Promise<LuoguPoolMap> | null = null;
+
+function loadPools(): Promise<LuoguPoolMap> {
+  if (poolsCache) return Promise.resolve(poolsCache);
+  if (!poolsLoading) {
+    poolsLoading = fetch("/data/luogu-pools.json")
+      .then((r) => (r.ok ? (r.json() as Promise<LuoguPoolMap>) : ({} as LuoguPoolMap)))
+      .then((d) => {
+        poolsCache = d;
+        return d;
+      })
+      .catch(() => ({}) as LuoguPoolMap);
+  }
+  return poolsLoading;
+}
+
+// ---------------------------------------------------------------------------
 // 可复现的伪随机（同一个 seed 得到同一批题，换 seed 就换一批）
 // ---------------------------------------------------------------------------
 function mulberry32(seed: number) {
@@ -118,6 +146,7 @@ export function AlgorithmDetail({
   } = useProgress();
   const [seed, setSeed] = useState(0);
   const [snapshot, setSnapshot] = useState<CfSnapshot | null>(null);
+  const [builtinPools, setBuiltinPools] = useState<LuoguPoolMap>({});
   const [editing, setEditing] = useState(false);
   const poolRefs = useRef<Record<string, HTMLTextAreaElement | null>>({});
 
@@ -125,6 +154,9 @@ export function AlgorithmDetail({
     let alive = true;
     loadCf().then((d) => {
       if (alive) setSnapshot(d);
+    });
+    loadPools().then((d) => {
+      if (alive) setBuiltinPools(d);
     });
     return () => {
       alive = false;
@@ -151,9 +183,16 @@ export function AlgorithmDetail({
     return LEVELS.map((level: Level) => {
       const [lo, hi] = range[level];
 
-      // 洛谷：优先用用户自己填的题池，没有才回退到内置精选题
+      // 洛谷题池优先级：用户手填 > 仓库内置 JSON > curriculum.ts 里的精选题
       const custom = luoguPools[node.id]?.[level];
-      const luoguSource = custom && custom.length > 0 ? custom : (node.luogu?.[level] ?? []);
+      const fromJson = builtinPools[node.id]?.[level];
+      const fromCode = node.luogu?.[level] ?? [];
+      const luoguSource =
+        custom && custom.length > 0
+          ? custom
+          : fromJson && fromJson.length > 0
+            ? fromJson
+            : fromCode;
       const luoguPool: ProblemItem[] = luoguSource.map((p) => ({
         key: `luogu:${p.id}`,
         label: p.id,
@@ -201,7 +240,7 @@ export function AlgorithmDetail({
         cfTotal: cfPool.length,
       };
     });
-  }, [node, mode, seed, snapshot, tagIds, isRecentlyDone, luoguPools]);
+  }, [node, mode, seed, snapshot, tagIds, isRecentlyDone, luoguPools, builtinPools]);
 
   if (!node) {
     return (
@@ -217,15 +256,23 @@ export function AlgorithmDetail({
   const hasLuogu = LEVELS.some(
     (l) =>
       (luoguPools[node.id]?.[l]?.length ?? 0) > 0 ||
+      (builtinPools[node.id]?.[l]?.length ?? 0) > 0 ||
       (node.luogu?.[l]?.length ?? 0) > 0,
   );
   const hasCf = tagIds.length > 0;
   const nothingYet = !hasLuogu && !hasCf;
 
-  /** 输入框的初始文本：有自定义就用自定义，否则用内置精选 */
+  /** 输入框的初始文本：优先级 手填 > 内置 JSON > 代码里的精选 */
   const initialPoolText = (level: Level) => {
     const custom = luoguPools[node.id]?.[level];
-    const src = custom && custom.length > 0 ? custom : (node.luogu?.[level] ?? []);
+    const fromJson = builtinPools[node.id]?.[level];
+    const fromCode = node.luogu?.[level] ?? [];
+    const src =
+      custom && custom.length > 0
+        ? custom
+        : fromJson && fromJson.length > 0
+          ? fromJson
+          : fromCode;
     return src.map((p) => (p.name ? `${p.id} ${p.name}` : p.id)).join("\n");
   };
 
