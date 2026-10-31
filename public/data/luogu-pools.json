@@ -2968,5 +2968,63 @@
       { "id": "P4696", "name": "[CEOI 2011] Matching" },
       { "id": "P4824", "name": "[USACO15FEB] Censoring S" }
     ]
+  },
+  "s7-trie": {
+    "入门": [
+      { "id": "P1481", "name": "魔族密码" }
+    ],
+    "基础": [
+      { "id": "P5149", "name": "会议座位" },
+      { "id": "P5266", "name": "【深基17.例6】学籍管理" },
+      { "id": "P5335", "name": "[THUSC 2016] 补退选" },
+      { "id": "P5546", "name": "[POI 2000 R3] 公共串" },
+      { "id": "P5755", "name": "[NOI2000] 单词查找树" },
+      { "id": "P1333", "name": "瑞瑞的木棍" },
+      { "id": "P1470", "name": "[IOI 1996 / USACO2.3] 最长前缀 Longest Prefix" },
+      { "id": "P1688", "name": "新单词接龙问题" },
+      { "id": "P1908", "name": "逆序对" },
+      { "id": "P2237", "name": "[USACO14FEB] Auto-complete S" },
+      { "id": "P2536", "name": "[AHOI2005] 病毒检测" },
+      { "id": "P2580", "name": "于是他错误的点名开始了" },
+      { "id": "P2922", "name": "[USACO08DEC] Secret Message G" },
+      { "id": "P3449", "name": "[POI 2006] PAL-Palindromes" },
+      { "id": "P3879", "name": "[TJOI2010] 阅读理解" },
+      { "id": "P4551", "name": "最长异或路径" },
+      { "id": "B4571", "name": "[合肥市初中组 2025 T3] 字符串" }
+    ],
+    "提高": [
+      { "id": "P4592", "name": "[TJOI2018] 异或" },
+      { "id": "P4683", "name": "[IOI 2008] Type Printer" },
+      { "id": "P4735", "name": "最大异或和" },
+      { "id": "P5283", "name": "[十二省联考 2019] 异或粽子" },
+      { "id": "P5460", "name": "[BJOI2016] IP地址" },
+      { "id": "P5573", "name": "[CmdOI2019] 星际kfc篮球赛" },
+      { "id": "P5592", "name": "美德的讲坛" },
+      { "id": "P5629", "name": "【AFOI-19】区间与除法" },
+      { "id": "P5768", "name": "[CQOI2016] 路由表" },
+      { "id": "P5841", "name": "[CTSC2011] 字符串重排" },
+      { "id": "P6018", "name": "[Ynoi2010] Fusion tree" },
+      { "id": "P6072", "name": "『MdOI R1』Path" },
+      { "id": "P6088", "name": "[JSOI2015] 字符串树" },
+      { "id": "P6257", "name": "[ICPC 2019 WF] First of Her Name" },
+      { "id": "P6286", "name": "[COCI 2016/2017 #1] Cezar" },
+      { "id": "P6587", "name": "超超的序列 加强" },
+      { "id": "P6623", "name": "[省选联考 2020 A 卷] 树" },
+      { "id": "P6665", "name": "[清华集训 2016] Alice 和 Bob 又在玩游戏" },
+      { "id": "P6727", "name": "[COCI 2015/2016 #5] OOP" },
+      { "id": "P1666", "name": "前缀单词" },
+      { "id": "P3065", "name": "[USACO12DEC] First! G" },
+      { "id": "P3109", "name": "[USACO14OPEN] Code Breaking G" },
+      { "id": "P3294", "name": "[SCOI2016] 背单词" },
+      { "id": "P3494", "name": "[POI 2009] KOD-The Code" },
+      { "id": "P3732", "name": "[HAOI2017] 供给侧改革" },
+      { "id": "P3783", "name": "[SDOI2017] 天才黑客" },
+      { "id": "P3796", "name": "AC 自动机（简单版 II）" },
+      { "id": "P3883", "name": "[JLOI2008] 棋局定式" },
+      { "id": "P4098", "name": "[HEOI2013] ALO" },
+      { "id": "P4407", "name": "[JSOI2009] 电子字典" },
+      { "id": "P4471", "name": "[BJWC2018] 词韵" },
+      { "id": "P4585", "name": "[FJOI2015] 火星商店问题" }
+    ]
   }
 }
