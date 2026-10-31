@@ -1223,5 +1223,60 @@
       { "id": "P2300", "name": "合并神犇" },
       { "id": "P2491", "name": "[SDOI2011] 消防" }
     ]
+  },
+  "s2-list": {
+    "入门": [
+      { "id": "P1996", "name": "约瑟夫问题" },
+      { "id": "B3630", "name": "排队顺序" },
+      { "id": "B3631", "name": "单向链表" }
+    ],
+    "基础": [
+      { "id": "P10466", "name": "邻值查找" },
+      { "id": "P10522", "name": "[XJTUPC 2024] 雪中楼" },
+      { "id": "P10729", "name": "[NOISG 2023 Qualification] Dolls" },
+      { "id": "P12085", "name": "[蓝桥杯 2023 省 B] 整数删除" },
+      { "id": "P12166", "name": "[蓝桥杯 2025 省 C/Java A/研究生组] 冷热数据队列" },
+      { "id": "P12288", "name": "[蓝桥杯 2024 国 Java A] 栈" },
+      { "id": "P12368", "name": "[蓝桥杯 2022 省 Python B] 消除游戏" },
+      { "id": "P15439", "name": "[蓝桥杯 2025 国 Python B] 连通块" },
+      { "id": "P1106", "name": "删数问题" },
+      { "id": "P1160", "name": "队列安排" },
+      { "id": "P1878", "name": "舞蹈课" },
+      { "id": "P2201", "name": "数列编辑器" },
+      { "id": "P2776", "name": "[SDOI2007] 小组队列" },
+      { "id": "B4324", "name": "【模板】双向链表" },
+      { "id": "B4533", "name": "[信息与未来 2026] 旅行计划" },
+      { "id": "P5462", "name": "X龙珠" },
+      { "id": "P7912", "name": "[CSP-J 2021] 小熊的果篮" },
+      { "id": "P9518", "name": "queue" },
+      { "id": "P9715", "name": "「QFOI R1」头" }
+    ],
+    "提高": [
+      { "id": "P10093", "name": "[ROIR 2022] 礼物 (Day 2)" },
+      { "id": "P10371", "name": "「LAOI-4」石头" },
+      { "id": "P10478", "name": "生日礼物" },
+      { "id": "P11221", "name": "[COTS 2019] 序列操作 K-ti" },
+      { "id": "P11413", "name": "[EPXLQ2024 fall round] 好排列" },
+      { "id": "P11726", "name": "[JOIG 2025] 最悪の記者 5 / Worst Reporter 5" },
+      { "id": "P12646", "name": "[KOI 2024 Round 1] 升序" },
+      { "id": "P12665", "name": "[KOI 2023 Round 2] ZigZag" },
+      { "id": "P14062", "name": "【MX-X21-T7】[IAMOI R5] 若我不曾见过太阳" },
+      { "id": "P14182", "name": "「FAOI-R8」豹跑跑恒恒" },
+      { "id": "P14417", "name": "[JOISC 2015] 防壁 / Walls" },
+      { "id": "P15037", "name": "「chaynoi R2 T2」熟练地剖分" },
+      { "id": "P15093", "name": "[UOI 2025 II Stage] Odd Rows" },
+      { "id": "P15103", "name": "[ICPC 2025 LAC] Infinite Arrays" },
+      { "id": "P16395", "name": "[ECUSTPC 2026 Spring] 星之所在" },
+      { "id": "P1484", "name": "种树" },
+      { "id": "P1792", "name": "[国家集训队] 种树" },
+      { "id": "P3201", "name": "[HNOI2009] 梦幻布丁" },
+      { "id": "P4696", "name": "[CEOI 2011] Matching" },
+      { "id": "P5072", "name": "[Ynoi Easy Round 2015] 盼君勿忘" },
+      { "id": "P6412", "name": "[COCI 2008/2009 #3] BST" },
+      { "id": "P6821", "name": "[PA 2012] Tanie linie" },
+      { "id": "P8078", "name": "[WC2022] 秃子酋长" },
+      { "id": "P9461", "name": "「EZEC-14」众数 II" },
+      { "id": "P10034", "name": "「Cfz Round 3」Circle" }
+    ]
   }
 }
