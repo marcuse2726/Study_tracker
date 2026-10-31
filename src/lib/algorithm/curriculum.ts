@@ -1,7 +1,7 @@
 // ============================================================================
 // curriculum.ts —— 算法学习路径（拓扑图）的数据源
 // ============================================================================
-// 这个文件是「算法竞赛」页的核心数据：56 个知识点、它们的前置依赖、
+// 这个文件是「算法竞赛」页的核心数据：54 个知识点、它们的前置依赖、
 // 以及每个知识点对应的 Codeforces 标签（用于随机抽题）。
 //
 // 三条设计原则：
@@ -89,7 +89,7 @@ export function csdnSearchUrl(keyword: string): string {
 }
 
 // ---------------------------------------------------------------------------
-// 56 个知识点
+// 54 个知识点
 //
 // 注意：节点 id 里的 s0~s7 只是「历史编号」，不代表当前阶段。
 // 阶段顺序以每个节点的 stage 字段为准
@@ -438,10 +438,10 @@ export const ALGORITHMS: AlgorithmNode[] = [
   },
   {
     id: "s4-dijkstra",
-    name: "Dijkstra 最短路",
+    name: "最短路",
     stage: 5,
     tier: "core",
-    desc: "堆优化后 O(m log n)，求非负边权单源最短路",
+    desc: "Dijkstra（堆优化）/ Bellman-Ford·SPFA（负边权、负环）/ Floyd（任意两点），一节点全覆盖",
     prereq: ["s4-graph", "s2-heap"],
     cfTags: ["shortest paths"],
     luogu: {
@@ -455,24 +455,6 @@ export const ALGORITHMS: AlgorithmNode[] = [
         { id: "P1119", name: "灾后重建" },
       ],
     },
-  },
-  {
-    id: "s4-spfa",
-    name: "Bellman-Ford / SPFA",
-    stage: 5,
-    tier: "adv",
-    desc: "能处理负边权，也能判断负环",
-    prereq: ["s4-graph"],
-    cfTags: ["shortest paths"],
-  },
-  {
-    id: "s4-floyd",
-    name: "Floyd 最短路",
-    stage: 5,
-    tier: "core",
-    desc: "O(n³) 求任意两点最短路，n≤400 时非常好用",
-    prereq: ["s4-graph"],
-    cfTags: ["shortest paths"],
   },
   {
     id: "s4-mst",
