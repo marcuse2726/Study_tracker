@@ -937,5 +937,62 @@
       { "id": "P1066", "name": "[NOIP 2006 提高组] 2^k 进制数" },
       { "id": "P1232", "name": "[NOI2013] 树的计数" }
     ]
+  },
+  "s2-stack": {
+    "入门": [
+      { "id": "P3056", "name": "[USACO12NOV] Clumsy Cows S" },
+      { "id": "P1739", "name": "表达式括号匹配" },
+      { "id": "P1981", "name": "[NOIP 2013 普及组] 表达式求值" },
+      { "id": "B2165", "name": "括号匹配" },
+      { "id": "P1044", "name": "[NOIP 2003 普及组] 栈" },
+      { "id": "P1165", "name": "日志分析" },
+      { "id": "P1241", "name": "括号序列" },
+      { "id": "P1427", "name": "小鱼的数字游戏" },
+      { "id": "P1449", "name": "后缀表达式" }
+    ],
+    "基础": [
+      { "id": "P2558", "name": "[AHOI2002] 网络传输" },
+      { "id": "P2866", "name": "[USACO06NOV] Bad Hair Day S" },
+      { "id": "P3015", "name": "[USACO11FEB] Best Parenthesis S" },
+      { "id": "P3200", "name": "[HNOI2009] 有趣的数列" },
+      { "id": "P1575", "name": "正误问题" },
+      { "id": "P1612", "name": "[yLOI2018] 树上的链" },
+      { "id": "P1750", "name": "出栈序列" },
+      { "id": "P1823", "name": "[COI 2007] Patrik 音乐会的等待" },
+      { "id": "P1901", "name": "发射站" },
+      { "id": "P1944", "name": "最长括号匹配" },
+      { "id": "P2017", "name": "[USACO09DEC] Dizzy Cows G" },
+      { "id": "P2186", "name": "小 Z 的栈函数" },
+      { "id": "P2201", "name": "数列编辑器" },
+      { "id": "P2214", "name": "[USACO14MAR] Moo Moo S" },
+      { "id": "P2341", "name": "[USACO03FALL / HAOI2006] 受欢迎的牛 G" },
+      { "id": "P2395", "name": "BBCode 转换 Markdown" },
+      { "id": "P2441", "name": "角色属性树" },
+      { "id": "P1169", "name": "[ZJOI2007] 棋盘制作" },
+      { "id": "P1175", "name": "表达式的转换" },
+      { "id": "P1198", "name": "[JSOI2008] 最大数" },
+      { "id": "P1363", "name": "幻象迷宫" },
+      { "id": "P1503", "name": "鬼子进村" }
+    ],
+    "提高": [
+      { "id": "P2495", "name": "【模板】虚树 / [SDOI2011] 消耗战" },
+      { "id": "P2611", "name": "[ZJOI2012] 小蓝的好友" },
+      { "id": "P2897", "name": "[USACO08JAN] Artificial Lake G" },
+      { "id": "P3066", "name": "[USACO12DEC] Running Away From the Barn G" },
+      { "id": "P3121", "name": "[USACO15FEB] Censoring G" },
+      { "id": "P3194", "name": "[HNOI2008] 水平可见直线" },
+      { "id": "P3246", "name": "[HNOI2016] 序列" },
+      { "id": "P3253", "name": "[JLOI2013] 删除物品" },
+      { "id": "P3256", "name": "[JLOI2013] 赛车" },
+      { "id": "P3261", "name": "[JLOI2015] 城池攻占" },
+      { "id": "P3459", "name": "[POI 2007] MEG-Megalopolis" },
+      { "id": "P1912", "name": "[NOI2009] 诗人小G" },
+      { "id": "P2229", "name": "[HNOI2002] 沙漠寻宝" },
+      { "id": "P2325", "name": "[SCOI2005] 王室联邦" },
+      { "id": "P2396", "name": "yyy loves Maths VII" },
+      { "id": "P1054", "name": "[NOIP 2005 提高组] 等价表达式" },
+      { "id": "P1155", "name": "[NOIP 2008 提高组] 双栈排序" },
+      { "id": "P1552", "name": "[APIO2012] 派遣" }
+    ]
   }
 }
