@@ -1278,5 +1278,38 @@
       { "id": "P9461", "name": "「EZEC-14」众数 II" },
       { "id": "P10034", "name": "「Cfz Round 3」Circle" }
     ]
+  },
+  "s2-hash": {
+    "入门": [
+      { "id": "P3405", "name": "[USACO16DEC] Cities and States S" },
+      { "id": "P4305", "name": "[JLOI2011] 不重复数字" },
+      { "id": "P15799", "name": "[GESP202603 五级] 找数" },
+      { "id": "P16976", "name": "[NWERC 2017] 荷式英语 / Dunglish" }
+    ],
+    "基础": [
+      { "id": "P5266", "name": "【深基17.例6】学籍管理" },
+      { "id": "P9914", "name": "[ROI-3] 匀速相遇" },
+      { "id": "P10277", "name": "[USACO24OPEN] Bessie's Interview S" },
+      { "id": "P11615", "name": "【模板】哈希表" },
+      { "id": "P13308", "name": "故障" },
+      { "id": "P13718", "name": "[GCPC 2024] Copycat Catcher" },
+      { "id": "P13867", "name": "[SWERC 2020] Unique Activities" },
+      { "id": "P14894", "name": "[ICPC 2018 Yokohama R] Arithmetic Progressions" },
+      { "id": "P15299", "name": "[ROI 2012 Day 2] theatre 剧院始于演员" },
+      { "id": "P16201", "name": "【MX-S13-T1】旋转工艺" },
+      { "id": "P16780", "name": "【Xzy OI R1 T2】成成边" }
+    ],
+    "提高": [
+      { "id": "P1933", "name": "[NOI2010] 旅行路线" },
+      { "id": "P3471", "name": "[POI 2008] POC-Trains" },
+      { "id": "P4875", "name": "[USACO14OPEN] Fair Photography G" },
+      { "id": "P6658", "name": "边三连通分量" },
+      { "id": "P10299", "name": "[CCC 2024 S5] Chocolate Bar Partition" },
+      { "id": "P12608", "name": "贴膜打金服" },
+      { "id": "P14941", "name": "「FAOI-R10」梦" },
+      { "id": "P15356", "name": "「LCoi R2 T2」The Ordeal" },
+      { "id": "P16937", "name": "时间之书" },
+      { "id": "P17214", "name": "[ICPC 2017 Nanning R] Banned Patterns" }
+    ]
   }
 }
